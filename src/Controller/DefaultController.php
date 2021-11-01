@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use phpDocumentor\Reflection\Types\This;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
     /**
      * @Route("/")
@@ -14,7 +16,9 @@ class DefaultController
      */
     public function indexAction(): Response
     {
-        return new Response('Hello, World!');
+        return $this->render('base.html.twig', [
+            'hello' => 'Hello, World!'
+        ]);
     }
 
     /**
