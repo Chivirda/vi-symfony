@@ -22,8 +22,6 @@ class DefaultController extends AbstractController
 
     /**
      * @Route ("/print-your-name/{name}")
-     *
-     * @return Response
      */
     public function printYourNameAction($name): Response
     {
