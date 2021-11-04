@@ -1,9 +1,11 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Список запросов в систему{% endblock %}
 
 {% block body %}
     <h1>Список запросов:</h1>
     <div>
-        <table width="100%" border="1px solid #000">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Номер</th>

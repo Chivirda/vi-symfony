@@ -1,10 +1,15 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+    Запрос: {{ request.title }}
+{% endblock %}
 
 {% block body %}
     <a href="{{ path('request.list') }}">К списку</a>
     <h1>Запрос: {{ request.title }}</h1>
     <div>
-        <table width="100%" border="1px solid #000">
+        <table class="table">
             <thead>
             <tr>
                 <th>Сообщение</th>
