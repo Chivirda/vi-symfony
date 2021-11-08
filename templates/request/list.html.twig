@@ -15,14 +15,14 @@
                 </tr>
             </thead>
             <tbody>
+            {% for request in requestList %}
                 <tr>
-                    {% for request in requestList %}
-                        <td>{{ request.id }}</td>
-                        <td><a href="{{ path('request.show', {'id': request.id}) }}">{{ request.title }}</a></td>
-                        <td>{{ request.status }}</td>
-                        <td>{{ request.createAt.format('Y.m.d H-m-i') }}</td>
-                    {% endfor %}
+                    <td>{{ request.id }}</td>
+                    <td><a href="{{ path('request.show', {'id': request.id}) }}">{{ request.title }}</a></td>
+                    <td>{{ request.status }}</td>
+                    <td>{{ request.createAt.format('Y.m.d H-m-i') }}</td>
                 </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
