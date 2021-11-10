@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Request;
+use App\Form\Type\RequestType;
 use App\Repository\RequestRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,6 +41,20 @@ class RequestController extends AbstractController
 
         return $this->render('request/show.html.twig', [
             'request' => $request
+        ]);
+    }
+
+    /**
+     * @Route("/add", name="request.add")
+     */
+    public function addRequestAction(): Response
+    {
+        $request = new Request('Новый запрос', 'Новое сообщение');
+
+        $form = $this->createForm(RequestType::class, $request);
+
+        return $this->renderForm('add.html.twig', [
+            'form' => $form
         ]);
     }
 }
