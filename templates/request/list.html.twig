@@ -3,16 +3,19 @@
 {% block title %}Список запросов в систему{% endblock %}
 
 {% block body %}
-    <h1>Список запросов:</h1>
-    <div>
+    <div class="row d-flex align-items-center">
+        <h1 class="col-10">Список запросов:</h1>
+        <a href="{{ path('request.add') }}" class="btn btn-outline-primary col-2">Добавить запрос</a>
+    </div>
+    <div class="row">
         <table class="table">
             <thead>
-                <tr>
-                    <th>Номер</th>
-                    <th>Заголовок</th>
-                    <th>Статус</th>
-                    <th>Дата создания</th>
-                </tr>
+            <tr>
+                <th>Номер</th>
+                <th>Заголовок</th>
+                <th>Статус</th>
+                <th>Дата создания</th>
+            </tr>
             </thead>
             <tbody>
             {% for request in requestList %}

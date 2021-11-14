@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\DTO\RequestDTO;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,7 +25,7 @@ class Request
     private string $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", length=10000)
      */
     private string $message;
 
@@ -43,6 +44,11 @@ class Request
         $this->title = $title;
         $this->message = $message;
         $this->createAt = new DateTime();
+    }
+
+    public static function createFromDTO(RequestDTO $requestDTO): self
+    {
+        return new self($requestDTO->getTitle(), $requestDTO->getMessage());
     }
 
     public function getId(): ?int
