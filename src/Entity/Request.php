@@ -20,7 +20,7 @@ class Request
     private ?int $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=255)
      */
     private string $title;
 
@@ -49,6 +49,12 @@ class Request
     public static function createFromDTO(RequestDTO $requestDTO): self
     {
         return new self($requestDTO->getTitle(), $requestDTO->getMessage());
+    }
+
+    public function updateFromDTO(RequestDTO $requestDTO)
+    {
+        $this->setTitle($requestDTO->getTitle());
+        $this->setMessage($requestDTO->getMessage());
     }
 
     public function getId(): ?int

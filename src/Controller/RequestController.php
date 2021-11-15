@@ -79,4 +79,33 @@ class RequestController extends AbstractController
             'form' => $form
         ]);
     }
+
+    /**
+     * @Route("/edit/{id}", name="request.edit")
+     */
+    public function editAction(Request $request, RequestEntity $requestEntity): Response
+    {
+        $requestDTO = RequestDTO::createFromEntity($requestEntity);
+
+        $form = $this->createForm(RequestType::class, $requestDTO, [
+            'action' => $this->generateUrl('request.edit', [
+                'id' => $requestEntity->getId()
+            ])
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $requestEntity->updateFromDTO($requestDTO);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('request.show', [
+                'id' => $requestEntity->getId()
+            ]);
+        }
+
+        return $this->renderForm('request/edit.html.twig', [
+            'form' => $form
+        ]);
+    }
 }

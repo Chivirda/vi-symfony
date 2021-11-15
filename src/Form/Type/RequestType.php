@@ -21,7 +21,10 @@ class RequestType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Текст запроса',
-                'attr' => ['placeholder' => 'Текст запроса']
+                'attr' => [
+                    'placeholder' => 'Текст запроса',
+                    'style' => 'height: 300px'
+                ]
             ])
             ->add('save', SubmitType::class, ['label' => 'Добавить']);
     }
