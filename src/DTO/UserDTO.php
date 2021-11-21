@@ -5,7 +5,8 @@ namespace App\DTO;
 class UserDTO
 {
     private ?string $email;
-    private ?string $password;
+    private ?string $plainPassword;
+    private ?string $hashedPassword;
 
     public function getEmail(): ?string
     {
@@ -17,13 +18,24 @@ class UserDTO
         $this->email = $email;
     }
 
-    public function getPassword(): ?string
+    public function getPlainPassword(): ?string
     {
-        return $this->password;
+        return $this->plainPassword;
     }
 
-    public function setPassword(?string $password): void
+    public function setPlainPassword(?string $plainPassword): void
     {
-        $this->password = $password;
+        $this->plainPassword = $plainPassword;
     }
+
+    public function getHashedPassword(): ?string
+    {
+        return $this->hashedPassword;
+    }
+
+    public function setHashedPassword(?string $hashedPassword): void
+    {
+        $this->hashedPassword = $hashedPassword;
+    }
+
 }

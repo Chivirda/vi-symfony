@@ -15,16 +15,6 @@ class DefaultController extends AbstractController
      */
     public function indexAction(): Response
     {
-        return $this->render('base.html.twig', [
-            'hello' => 'Hello, World!'
-        ]);
-    }
-
-    /**
-     * @Route ("/print-your-name/{name}")
-     */
-    public function printYourNameAction($name): Response
-    {
-        return new Response(sprintf('Hello, %s!', $name));
+        return $this->render('base.html.twig');
     }
 }
