@@ -30,11 +30,12 @@ class RequestController extends AbstractController
      */
     public function findListAction(RequestRepository $requestRepository): Response
     {
-        $requestList = $requestRepository->findAll();
 
+        $requestList = $requestRepository->findAll();
         return $this->render('request/list.html.twig', [
             'requestList' => $requestList
         ]);
+
     }
 
     /**
