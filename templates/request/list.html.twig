@@ -15,6 +15,7 @@
                 <th>Заголовок</th>
                 <th>Статус</th>
                 <th>Дата создания</th>
+                <th>Автор</th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@
                     <td><a href="{{ path('request.show', {'id': request.id}) }}">{{ request.title }}</a></td>
                     <td>{{ request.status }}</td>
                     <td>{{ request.createAt.format('Y.m.d H-m-i') }}</td>
+                    <td>{{ request.createdBy }}</td>
                 </tr>
             {% endfor %}
             </tbody>

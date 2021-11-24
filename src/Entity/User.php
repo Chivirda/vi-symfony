@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\DTO\UserDTO;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -35,6 +35,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private string $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Request", mappedBy="createdBy")
+     */
+    private $requests;
+
+    public function __construct()
+    {
+        $this->requests = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

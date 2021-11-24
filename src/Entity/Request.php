@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\DTO\RequestDTO;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RequestRepository")
@@ -38,6 +39,12 @@ class Request
      * @ORM\Column(type="datetime")
      */
     private DateTime $createAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="requests")
+     * @ORM\JoinColumn(name="createdBy", referencedColumnName="id")
+     */
+    private UserInterface $createdBy;
 
     public function __construct(string $title, string $message)
     {
@@ -96,6 +103,20 @@ class Request
     {
         return $this->createAt;
     }
+
+    public function getCreatedBy(): string
+    {
+        return $this->createdBy->getUsername();
+    }
+
+    public function setCreatedBy(UserInterface $createdBy): void
+    {
+        $this->createdBy = $createdBy;
+    }
+
+
+
+
 
 
 }
