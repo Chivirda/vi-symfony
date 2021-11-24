@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\DTO\RequestDTO;
 use App\Entity\Request as RequestEntity;
+use App\Entity\User;
 use App\Form\Type\RequestType;
 use App\Repository\RequestRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,6 +62,7 @@ class RequestController extends AbstractController
     public function addAction(Request $request): Response
     {
         $requestDTO = new RequestDTO();
+        $user = $this->getUser();
 
         $form = $this->createForm(RequestType::class, $requestDTO, [
             'action' => $this->generateUrl('request.add')
@@ -68,6 +71,7 @@ class RequestController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $requestEntity = RequestEntity::createFromDTO($requestDTO);
+            $requestEntity->setCreatedBy($user);
             $this->entityManager->persist($requestEntity);
             $this->entityManager->flush();
 
